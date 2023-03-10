@@ -14,7 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    @Bean
+    //빈 이름은 보통 메서드 이름
+    //직접 부여 할수 도 있음
+    // 빈 이름은 항상 다른 이름을 부여해야 한다. 다른빈이 무시 되거나 기존 빈을 덮어 버릴 수도 있다.
+    @Bean(name = "memberService")
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
