@@ -8,6 +8,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class XmlAppContext {
 
+    //xml파일로 등록한 파일 읽어서 빈 등록
     @Test
     void xmlAppContext() {
         ApplicationContext ac = new GenericXmlApplicationContext("appConfig.xml");
