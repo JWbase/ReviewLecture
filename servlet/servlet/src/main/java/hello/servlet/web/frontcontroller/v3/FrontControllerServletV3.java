@@ -1,5 +1,7 @@
 package hello.servlet.web.frontcontroller.v3;
 
+import hello.servlet.web.frontcontroller.ModelView;
+import hello.servlet.web.frontcontroller.MyView;
 import hello.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
 import hello.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
 import hello.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
@@ -34,7 +36,12 @@ public class FrontControllerServletV3 extends HttpServlet {
             return;
         }
 
-        createParamMap(request);
+        Map<String, String> paramMap = createParamMap(request);
+        ModelView mv = controller.process(paramMap);
+
+        String viewName = mv.getViewName();
+        MyView view = viewResolver(viewName);
+        view.render(mv.getModel(), request, response);
     }
 
     private static Map<String, String> createParamMap(HttpServletRequest request) {
@@ -43,5 +50,9 @@ public class FrontControllerServletV3 extends HttpServlet {
         request.getParameterNames().asIterator()
                 .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
         return paramMap;
+    }
+
+    private MyView viewResolver(String viewName) {
+        return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 }
