@@ -15,6 +15,7 @@ public class MyLogger {
     private String uuid;
     private String requestURL;
 
+    //requestURL은 bean이 생성되는 시점에 알 수 없으므로 외부에서 setter로 입력받는다.
     public void setRequestURL(String requestURL) {
         this.requestURL = requestURL;
     }

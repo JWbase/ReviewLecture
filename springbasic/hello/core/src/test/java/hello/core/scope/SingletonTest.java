@@ -14,7 +14,7 @@ public class SingletonTest {
 
     @Test
     void singletonBeanFind() {
-        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);//스프링 컨테이너 생성 후 빈 생성
 
         SingletonBean singletonBean1 = ac.getBean(SingletonBean.class);
         SingletonBean singletonBean2 = ac.getBean(SingletonBean.class);
